@@ -1,3 +1,5 @@
+local logger = require("util.logger")
+
 local M = {}
 
 ---@class preview.Renderer
@@ -20,6 +22,7 @@ function M.setup()
 		render_on_write = false,
 	}
 	local renderer = create_renderer("text")
+	logger:Log("renderer: ", renderer)
 end
 
 return M
