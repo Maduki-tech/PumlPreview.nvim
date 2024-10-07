@@ -1,4 +1,5 @@
 local logger = require("util.logger")
+local text = require("renderer.text")
 
 local M = {}
 
@@ -7,12 +8,9 @@ local M = {}
 ---@field stdin boolean
 ---@field stdout boolean
 
----@return preview.Renderer
-local function create_renderer(type)
-	local renderer
-	-- if type == "text" then
-	-- 	renderer = text.Renderer:new()
-	-- end
+---@return TextRenderer
+local function create_renderer(type, opts)
+	local renderer = text.TextRenderer:new(opts)
 	return renderer
 end
 
@@ -22,14 +20,14 @@ function M.setup()
 		render_on_write = false,
 	}
 	vim.api.nvim_create_user_command("PumlPreview", function()
-		M.PumlPreview()
+		M.PumlPreview(default_opts)
 	end, {})
-	local renderer = create_renderer("text")
-	logger:log("renderer: ")
 end
 
-function M.PumlPreview()
+function M.PumlPreview(opts)
 	logger:log("PumlPreview")
+	local renderer = create_renderer("text", opts)
+	renderer:show()
 end
 
 return M

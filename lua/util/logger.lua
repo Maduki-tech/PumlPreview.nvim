@@ -24,6 +24,8 @@ end
 --- Log messages to the new buffer
 function Logger:log(...)
 	local prcessed = {}
+
+	-- convert tables to strings and insert them into the processed table
 	for i = 1, select("#", ...) do
 		local item = select(i, ...)
 		if type(item) == "table" then
