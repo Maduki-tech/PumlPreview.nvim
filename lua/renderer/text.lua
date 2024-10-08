@@ -84,7 +84,6 @@ end
 
 function M.TextRenderer:show()
 	logger:log(filename, "TextRenderer:Show", "Showing TextRenderer")
-	-- TODO: Generate the text file with pumlcli tool
 	self:convertPumlToText()
 	self:create_window()
 end

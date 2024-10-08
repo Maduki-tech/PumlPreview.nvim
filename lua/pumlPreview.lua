@@ -13,8 +13,6 @@ local filename = "pumlPreview.lua"
 ---@field stdin boolean
 ---@field stdout boolean
 
--- TODO: Check for Types so it will be expandable
-
 ---@return TextRenderer
 ---@param opts preview.Options
 local function create_renderer(opts)
