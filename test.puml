@@ -4,4 +4,35 @@ class Main {
     + main(args: String[]): void
 }
 
+class Rafa{
+    - stressLevel: int
+    - energyLevel: int
+    - hungerLevel: int
+
+    + Rafa()
+    + getStressLevel(): int
+    + getEnergyLevel(): int
+    + getHungerLevel(): int
+    + setStressLevel(stressLevel: int): void
+    + setEnergyLevel(energyLevel: int): void
+    + setHungerLevel(hungerLevel: int): void
+    
+}
+
+class RafaController {
+    - rafa: Rafa
+
+    + RafaController()
+    + getRafa(): Rafa
+    + setRafa(rafa: Rafa): void
+    + updateRafa(): void
+    + updateStressLevel(stressLevel: int): void
+    + updateEnergyLevel(energyLevel: int): void
+    + updateHungerLevel(hungerLevel: int): void
+}
+
+RafaController "1" --> "1" Rafa : composition
+Main "1" --> "1" RafaController : composition
+
+
 @enduml

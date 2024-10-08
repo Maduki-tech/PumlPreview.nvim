@@ -74,8 +74,7 @@ function M.TextRenderer:convertOutputToTable(...)
 		local split = utils.split(line, "\n")
 		for _, l in ipairs(split) do
 			if not utils.is_white_space(l) then
-				local ll = utils.trim(utils.remove_duplicate_whitespace(l))
-				table.insert(lines, ll)
+				table.insert(lines, l)
 			end
 		end
 	end
