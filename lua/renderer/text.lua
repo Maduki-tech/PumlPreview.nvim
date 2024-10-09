@@ -40,7 +40,6 @@ function M.TextRenderer:create_window()
 	end
 end
 
----@private
 function M.TextRenderer:convertPumlToText()
 	local currentOpenFilePath = vim.api.nvim_buf_get_name(0)
 	logger:log(filename, "TextRenderer:convertPumlToText", currentOpenFilePath)
@@ -84,7 +83,6 @@ end
 
 function M.TextRenderer:show()
 	logger:log(filename, "TextRenderer:Show", "Showing TextRenderer")
-	self:convertPumlToText()
 	self:create_window()
 end
 

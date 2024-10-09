@@ -19,6 +19,7 @@ local default_opts = {
 - [ ] Add render on write
 - [ ] Add image preview
 - [ ] Add image exporting
+- [ ] Add Tests
 - [ ] File type Checking for plantuml endings (puml, plantuml)
 
 ## Contribution

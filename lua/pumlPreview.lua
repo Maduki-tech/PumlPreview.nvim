@@ -4,11 +4,14 @@ local text = require("renderer.text")
 local M = {}
 local filename = "pumlPreview.lua"
 
+local renderer = nil
+
 ---@class preview.Options
 ---@field render_on_write boolean
 ---@field render_type 'text' | 'image'
 
 ---@class preview.Renderer
+---@field renderer TextRenderer
 ---@field command string
 ---@field stdin boolean
 ---@field stdout boolean
@@ -36,18 +39,30 @@ function M.setup(opts)
 	}
 
 	opts = vim.tbl_extend("force", default_opts, opts)
+	renderer = create_renderer(opts)
 
 	logger:log(filename, "setup", opts)
 	vim.api.nvim_create_user_command("PumlPreview", function()
-		M.PumlPreview(opts)
+		M.PumlPreview()
 	end, {})
+
+	if opts.render_on_write then
+		vim.api.nvim_create_augroup("PumlPreview", {})
+		vim.api.nvim_create_autocmd("BufWritePost", {
+			pattern = "*.puml",
+			group = "PumlPreview",
+			callback = function()
+				renderer:convertPumlToText()
+			end,
+		})
+	end
 end
 
 --- Start the PumlPreview
----@param opts preview.Options
-function M.PumlPreview(opts)
+function M.PumlPreview()
 	logger:log(filename, "PumlPreview", "Starting PumlPreview")
-	local renderer = create_renderer(opts)
+	assert(renderer, "Renderer not initialized")
+	renderer:convertPumlToText()
 	renderer:show()
 end
 

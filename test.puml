@@ -2,6 +2,7 @@
 
 class Main {
     + main(args: String[]): void
+    - test(): void
 }
 
 class Rafa{
